@@ -9,6 +9,7 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UITextView *textBody;
 
 @end
 
@@ -24,6 +25,26 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)textBold:(id)sender {
+    [self setBodyTextBold];
+}
+
+- (IBAction)textUnBold:(id)sender {
+    [self setBodyTextUnBold];
+}
+
+- (void) setBodyTextBold {
+    NSMutableAttributedString *text = [self.textBody textStorage];
+    NSDictionary *newAttributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:[UIFont systemFontSize]]};
+    [text setAttributes:newAttributes range:[self.textBody selectedRange]];
+}
+
+- (void) setBodyTextUnBold {
+    NSMutableAttributedString *text = [self.textBody textStorage];
+    NSDictionary *newAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:[UIFont systemFontSize]]};
+    [text setAttributes:newAttributes range:[self.textBody selectedRange]];
 }
 
 @end
